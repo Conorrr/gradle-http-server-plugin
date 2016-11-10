@@ -43,7 +43,7 @@ httpServer {
 
 If no configuration is given the basePath, path and port will default to the above values.
 
-=== Using plugin
+=== Tasks
 
 There plugin contains 3 tasks, 1 to start the server (`httpStart`), another to stop it (`httpStop`) and a gradle sleep task (`wait`); their names are pretty self-explanatory.
 
