@@ -4,7 +4,7 @@ This is a really simple plugin that serves HTTP requests based on static files.
 
 == Usage
 
-==== Import the plugin
+=== Import the plugin
 
 .< Gradle 2.1
 ----
@@ -29,7 +29,7 @@ plugins {
 }
 ----
 
-==== Configure
+=== Configure
 
 Configuration is currenly very limited (by design).
 
@@ -37,11 +37,29 @@ Configuration is currenly very limited (by design).
 httpServer {
     basePath "/build/http"
     port 9000
+    path ""
 }
 ----
 
-If no configuration is given the basePath and port will default to the above values.
+If no configuration is given the basePath, path and port will default to the above values.
 
+=== Using plugin
+
+There plugin contains 3 tasks, 1 to start the server (`httpStart`), another to stop it (`httpStop`) and a gradle sleep task (`wait`); their names are pretty self-explanatory.
+
+`wait` exists purely to help with debugging it causes gradle to sleep for 100 seconds.
+E.G. you can run `gradle httpStart wait` which will start up the server wait for 100 seconds and then stop.
+
+When gradle stops then the server will also stop.
+
+Expected usage
+
+```
+startHttp.dependsOn integrationTest
+stopHttp.mustRunAfter integrationTest
+```
+
+Where integrationTest is an example of a tasks that relies on
 
 == Limitations
 
