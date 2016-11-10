@@ -15,23 +15,23 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.io.restall:gradle-http-server-plugin:0.1"
+    classpath "gradle.plugin.io.restall:http-server:0.1"
   }
 }
 
-apply plugin: "io.restall.gradle-http-server-plugin"
+apply plugin: "io.restall.http-server"
 ----
 
 .>= Gradle 2.1
 ----
 plugins {
-  id "io.restall.gradle-http-server-plugin" version "0.1"
+  id "io.restall.http-server" version "0.1"
 }
 ----
 
 === Configure
 
-Configuration is currenly very limited (by design).
+Configuration is currently very limited (by design).
 
 ----
 httpServer {
