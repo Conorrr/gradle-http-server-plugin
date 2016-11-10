@@ -19,8 +19,8 @@ class StaticHttpServerPlugin implements Plugin<Project> {
         project.task('httpStart') << {
             println "Starting static http server"
 
-            File root = new File(project.httpServer.basePath ?: 'build/http')
-            int port = project.httpServer.port ?: 9000
+            File root = new File(project.httpServer.basePath)
+            int port = project.httpServer.port
 
             server = new ConfigurableFileServerContainer().start(root, port)
 
@@ -29,6 +29,7 @@ class StaticHttpServerPlugin implements Plugin<Project> {
 
         project.task('httpStop') << {
             println "Stopping static http server"
+            server.stop()
         }
     }
 }

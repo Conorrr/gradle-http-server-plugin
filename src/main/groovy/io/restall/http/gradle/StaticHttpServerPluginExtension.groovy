@@ -2,7 +2,7 @@ package io.restall.http.gradle
 
 class StaticHttpServerPluginExtension {
 
-    String basePath
-    int port
+    String basePath = "build/http"
+    int port = 9000
 
 }
