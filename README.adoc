@@ -37,11 +37,10 @@ Configuration is currenly very limited (by design).
 httpServer {
     basePath "/build/http"
     port 9000
-    path ""
 }
 ----
 
-If no configuration is given the basePath, path and port will default to the above values.
+If no configuration is given the basePath and port will default to the above values.
 
 === Tasks
 
@@ -69,7 +68,7 @@ Currently there is no support for index files yet. The list of supported file ty
 
 == Content-Types
 
-Here is a mapping of all the supported file extensions and their appropriate content-types.
+Here is a mapping of all the supported file extensions and their appropriate content-types. If the file extension is not in the list below then `application/octetstream` will be set as content-type
 
 [cols="2*", options="header"]
 |===
@@ -93,6 +92,9 @@ Here is a mapping of all the supported file extensions and their appropriate con
 
 |application/x-javascript
 |js
+
+|application/json
+|json
 
 |text/plain
 |txt

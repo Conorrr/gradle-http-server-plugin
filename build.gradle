@@ -1,38 +1,6 @@
-apply plugin: StaticHttpServerPlugin
+apply plugin: 'groovy'
 
-//httpServer {
-//    basePath "."
-//    port = 8098
-//}
-
-class StaticHttpServerPlugin implements Plugin<Project> {
-
-    void apply(Project project) {
-        project.extensions.create("httpServer", StaticHttpServerPluginExtension)
-
-        project.task('wait') << {
-            sleep(100000); // 100 secs
-        }
-
-        project.task('httpStart') << {
-            println "Starting static http server"
-
-            File root = new File(project.httpServer.basePath ?: 'build/http')
-            int port = project.httpServer.port ?: 9000
-
-            SimpleHttpFileServerFactory factory = new SimpleHttpFileServerFactory();
-            HttpFileServer server = factory.start(root, port)
-
-            println "Server started on port ${server.port}"
-        }
-
-        project.task('httpStop') << {
-            println "Stopping static http server"
-        }
-    }
-}
-
-class StaticHttpServerPluginExtension {
-    String basePath
-    int port
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
 }
