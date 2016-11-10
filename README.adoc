@@ -50,16 +50,18 @@ There plugin contains 3 tasks, 1 to start the server (`httpStart`), another to s
 `wait` exists purely to help with debugging it causes gradle to sleep for 100 seconds.
 E.G. you can run `gradle httpStart wait` which will start up the server wait for 100 seconds and then stop.
 
+IMPORTANT: SIGINT (ctrl+c) does not stop the job from running immediately. It will wait until the sleep in finished. Running `gradle --stop` will kill the jobs properly.
+
 When gradle stops then the server will also stop.
 
 Expected usage
 
 ```
-startHttp.dependsOn integrationTest
-stopHttp.mustRunAfter integrationTest
+integrationTest.dependsOn httpStart
+integrationTest.finalizedBy httpStop
 ```
 
-Where integrationTest is an example of a tasks that relies on
+Where integrationTest is an example of a tasks that relies on the server.
 
 == Limitations
 
