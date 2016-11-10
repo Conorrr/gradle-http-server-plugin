@@ -1,10 +1,10 @@
 package io.restall.http.gradle
 
-import io.restall.http.ConfigurableFileServerContainer
+import groovy.transform.CompileStatic
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.plugins.javascript.envjs.http.HttpFileServer
 
+@CompileStatic
 class StaticHttpServerPlugin implements Plugin<Project> {
 
     void apply(Project project) {
@@ -14,22 +14,23 @@ class StaticHttpServerPlugin implements Plugin<Project> {
             sleep(100000) // 100 secs
         }
 
-        HttpFileServer server
+        SimpleServer server
 
         project.task('httpStart') << {
             println "Starting static http server"
 
-            File root = new File(project.httpServer.basePath)
-            int port = project.httpServer.port
+            File root = new File((String) project['httpServer']['basePath'])
+            int port = (int) project['httpServer']['port']
 
-            server = new ConfigurableFileServerContainer().start(root, port)
+            server = new SimpleServer(root, port)
+            server.startServer()
 
             println "Server started on port ${server.port}"
         }
 
         project.task('httpStop') << {
             println "Stopping static http server"
-            server.stop()
+            server.stopServer()
         }
     }
 }
