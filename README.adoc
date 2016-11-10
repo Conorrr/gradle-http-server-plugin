@@ -1,0 +1,206 @@
+= Static Http Server Gradle Plugin
+
+This is a really simple plugin that serves HTTP requests based on static files.
+
+== Usage
+
+==== Import the plugin
+
+.< Gradle 2.1
+----
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.io.restall:gradle-http-server-plugin:0.1"
+  }
+}
+
+apply plugin: "io.restall.gradle-http-server-plugin"
+----
+
+.>= Gradle 2.1
+----
+plugins {
+  id "io.restall.gradle-http-server-plugin" version "0.1"
+}
+----
+
+==== Configure
+
+Configuration is currenly very limited (by design).
+
+----
+httpServer {
+    basePath "/build/http"
+    port 9000
+}
+----
+
+If no configuration is given the basePath and port will default to the above values.
+
+
+== Limitations
+
+Currently there is no support for index files yet. The list of supported file types is limited and non configurable. See the table below for all supported filetypes and their corresponding content-types. If the file extension is not recognised then
+
+== Content-Types
+
+Here is a mapping of all the supported file extensions and their appropriate content-types.
+
+[cols="2*", options="header"]
+|===
+|Content-type
+|File extension(s)
+
+|text/html
+|html htm shtml
+
+|text/css
+|css
+
+|text/xml
+|xml rss
+
+|image/gif
+|gif
+
+|image/jpeg
+|jpeg jpg
+
+|application/x-javascript
+|js
+
+|text/plain
+|txt
+
+|text/x-component
+|htc
+
+|text/mathml
+|mml
+
+|image/png
+|png
+
+|image/x-icon
+|ico
+
+|image/x-jng
+|jng
+
+|image/vnd.wap.wbmp
+|wbmp
+
+|application/java-archive
+|jar war ear
+
+|application/mac-binhex40
+|hqx
+
+|application/pdf
+|pdf
+
+|application/x-cocoa
+|cco
+
+|application/x-java-archive-diff
+|jardiff
+
+|application/x-java-jnlp-file
+|jnlp
+
+|application/x-makeself
+|run
+
+|application/x-perl
+|pl pm
+
+|application/x-pilot
+|prc pdb
+
+|application/x-rar-compressed
+|rar
+
+|application/x-redhat-package-manager
+|rpm
+
+|application/x-sea
+|sea
+
+|application/x-shockwave-flash
+|swf
+
+|application/x-stuffit
+|sit
+
+|application/x-tcl
+|tcl tk
+
+|application/x-x509-ca-cert
+|der pem crt
+
+|application/x-xpinstall
+|xpi
+
+|application/zip
+|zip
+
+|application/octet-stream
+|deb
+
+|application/octet-stream
+|bin exe dll
+
+|application/octet-stream
+|dmg
+
+|application/octet-stream
+|eot
+
+|application/octet-stream
+|iso img
+
+|application/octet-stream
+|msi msp msm
+
+|audio/mpeg
+|mp3
+
+|audio/x-realaudio
+|ra
+
+|video/mpeg
+|mpeg mpg
+
+|video/quicktime
+|mov
+
+|video/x-flv
+|flv
+
+|video/x-msvideo
+|avi
+
+|video/x-ms-wmv
+|wmv
+
+|video/x-ms-asf
+|asx asf
+
+|video/x-mng
+|mng
+|===
+
+
+
+== Supported Versions
+
+Currently the plugin has only been tested with Gradle 3.1. It should work with other version though.
+
+== Contributions
+
+I am hesitant to add much advanced functionality to this plugin as I want to keep it as simple as possible, please consider this before spending a large amount of time adding features.
