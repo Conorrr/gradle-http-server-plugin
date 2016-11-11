@@ -17,6 +17,10 @@ class StaticHttpServerPlugin implements Plugin<Project> {
         SimpleServer server
 
         project.task('httpStart') << {
+            if (server?.isRunning){
+                println "Server is already running, not restarting"
+                return
+            }
             println "Starting static http server"
 
             File filePath = new File((String) project['httpServer']['basePath'])

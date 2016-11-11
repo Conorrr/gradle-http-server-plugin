@@ -14,6 +14,8 @@ class SimpleServer {
 
     private HTTPServer server
 
+    boolean isRunning = false
+
     SimpleServer(File filePath, int port, String index, String context) {
         this.filePath = filePath
         this.port = port
@@ -22,6 +24,7 @@ class SimpleServer {
     }
 
     void startServer() {
+        isRunning = true
         HTTPServer.FileContextHandler contextHandler = new HTTPServer.FileContextHandler(filePath, "");
 
         HTTPServer.VirtualHost virtualHost = new HTTPServer.VirtualHost(null)
@@ -36,6 +39,7 @@ class SimpleServer {
 
     void stopServer() {
         server.stop()
+        isRunning = false
     }
 }
 
