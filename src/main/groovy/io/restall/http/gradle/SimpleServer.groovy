@@ -9,19 +9,24 @@ class SimpleServer {
 
     final int port
     final File filePath
+    final String index
+    final String context
 
     private HTTPServer server
 
-    SimpleServer(File filePath, int port) {
+    SimpleServer(File filePath, int port, String index, String context) {
         this.filePath = filePath
         this.port = port
+        this.index = index
+        this.context = context
     }
 
     void startServer() {
         HTTPServer.FileContextHandler contextHandler = new HTTPServer.FileContextHandler(filePath, "");
 
         HTTPServer.VirtualHost virtualHost = new HTTPServer.VirtualHost(null)
-        virtualHost.addContext('/', contextHandler)
+        virtualHost.setDirectoryIndex(index)
+        virtualHost.addContext(context, contextHandler)
 
         server = new HTTPServer(port)
         server.addVirtualHost(virtualHost)

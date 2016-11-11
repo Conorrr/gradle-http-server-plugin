@@ -2,6 +2,8 @@
 
 This is a really simple plugin that serves HTTP requests based on static files.
 
+Under the hood http://www.freeutils.net/source/jlhttp[FreeUtils JLHTTP] is used to power the webserver.
+
 == Usage
 
 === Import the plugin
@@ -35,12 +37,14 @@ Configuration is currently very limited (by design).
 
 ----
 httpServer {
-    basePath "/build/http"
+    basePath '/build/http'
     port 9000
+    index 'index.html'
+    context '/'
 }
 ----
 
-If no configuration is given the basePath and port will default to the above values.
+If no configuration is given the basePath, index, context and port will default to the above values.
 
 === Tasks
 

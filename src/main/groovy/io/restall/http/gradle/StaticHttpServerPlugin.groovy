@@ -19,10 +19,12 @@ class StaticHttpServerPlugin implements Plugin<Project> {
         project.task('httpStart') << {
             println "Starting static http server"
 
-            File root = new File((String) project['httpServer']['basePath'])
+            File filePath = new File((String) project['httpServer']['basePath'])
             int port = (int) project['httpServer']['port']
+            String index = (String) project['httpServer']['index']
+            String context = (String) project['httpServer']['context']
 
-            server = new SimpleServer(root, port)
+            server = new SimpleServer(filePath, port, index, context)
             server.startServer()
 
             println "Server started on port ${server.port}"
